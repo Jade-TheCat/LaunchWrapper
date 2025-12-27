@@ -50,7 +50,7 @@ public class MinecraftURLStreamHandler extends URLStreamHandlerProxy {
 				return new ListLevelsURLConnection(url, levelSaveDir);
 			if (path.startsWith("/MinecraftResources/") || path.startsWith("/resources/"))
 				return new AssetURLConnection(url, assets);
-			if (path.startsWith("/MinecraftSkins/") || path.startsWith("/skin/") || path.startsWith("/MinecraftCloaks/") || path.startsWith("/cloak/"))
+			if (!config.disableSkinFix.get() && (path.startsWith("/MinecraftSkins/") || path.startsWith("/skin/") || path.startsWith("/MinecraftCloaks/") || path.startsWith("/cloak/")))
 				return new SkinURLConnection(url, skins);
 			if (host.equals("assets.minecraft.net") && path.equals("/1_6_has_been_released.flag"))
 				if (config.oneSixFlag.get())
